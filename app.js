@@ -13,7 +13,6 @@ var campgrounds = [
     {name: "Mountain Goat Rest", image: "https://images.unsplash.com/photo-1476041800959-2f6bb412c8ce?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=c85daa025ee04c951b6ac12fe3ba031a&auto=format&fit=crop&w=900&q=60"}
 
 ];
-
 //homepage
 app.get("/", function(req,res){
     res.render("landing");
