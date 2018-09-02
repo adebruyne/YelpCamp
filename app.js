@@ -80,8 +80,14 @@ app.get("/campgrounds/new", function(req, res) {
 //SHOW ROUTE -- SHOW MORE INFO ABOUT ONE CAMPGROUND
 app.get("/campgrounds/:id", function(req, res) {
   //find the campground with provided ID
-  //render show template with that campground
-  res.render("show");
+  Campground.findById(req.params.id, function(err, foundCampground) {
+    if (err) {
+      console.log(err);
+    } else {
+      //render show template with that campground
+      res.render("show", { campground: foundCampground });
+    }
+  });
 });
 
 app.listen(8886, () => {
