@@ -81,7 +81,7 @@ app.get("/campgrounds/new", function(req, res) {
 app.get("/campgrounds/:id", function(req, res) {
   //find the campground with provided ID
   //render show template with that campground
-  
+res.render("show");
 });
 
 app.listen(8886, () => {
