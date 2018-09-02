@@ -12,7 +12,8 @@ app.set("view engine", "ejs");
 //SCHEMA SETUP
 var campgroundSchema = new mongoose.Schema({
   name: String,
-  image: String
+  image: String,
+  description: String
 });
 
 var Campground = mongoose.model("Campground", campgroundSchema);
@@ -21,7 +22,9 @@ var Campground = mongoose.model("Campground", campgroundSchema);
 //   {
 //     name: "Granite Hill",
 //     image:
-//       "https://images.unsplash.com/photo-1525209149972-1d3faa797c3c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=053f91dd9aee1cc7bc5cafca28cb625c&auto=format&fit=crop&w=900&q=60"
+//       "https://images.unsplash.com/photo-1525209149972-1d3faa797c3c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=053f91dd9aee1cc7bc5cafca28cb625c&auto=format&fit=crop&w=900&q=60",
+//     description:
+//       "This is a huge granite hill. No bathrooms. No water. But it sure is pretty."
 //   },
 //   function(err, campground) {
 //     if (err) {
@@ -74,8 +77,11 @@ app.get("/campgrounds/new", function(req, res) {
   res.render("new.ejs");
 });
 
+//SHOW ROUTE -- SHOW MORE INFO ABOUT ONE CAMPGROUND
 app.get("/campgrounds/:id", function(req, res) {
-  res.send("THIS WILL BE THE SHOW PAGE ONE DAY!");
+  //find the campground with provided ID
+  //render show template with that campground
+  
 });
 
 app.listen(8886, () => {
