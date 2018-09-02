@@ -48,7 +48,7 @@ app.get("/campgrounds", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("campgrounds", { campgrounds: allCampgrounds });
+      res.render("index", { campgrounds: allCampgrounds });
     }
   });
 });
@@ -81,7 +81,7 @@ app.get("/campgrounds/new", function(req, res) {
 app.get("/campgrounds/:id", function(req, res) {
   //find the campground with provided ID
   //render show template with that campground
-res.render("show");
+  res.render("show");
 });
 
 app.listen(8886, () => {
