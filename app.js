@@ -2,10 +2,10 @@ var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require("mongoose");
-var Campground = require("./models/campground")
-var seedDB = require("./seeds")
+var Campground = require("./models/campground");
+var seedDB = require("./seeds");
 
-
+//seed the database
 seedDB();
 
 mongoose.connect("mongodb://localhost/yelp_camp");
@@ -13,8 +13,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 
 //SCHEMA SETUP
-
-
 
 //homepage
 app.get("/", function(req, res) {
@@ -28,7 +26,7 @@ app.get("/campgrounds", function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render("index", { campgrounds: allCampgrounds });
+      res.render("campgrounds/index", { campgrounds: allCampgrounds });
     }
   });
 });
@@ -55,22 +53,32 @@ app.post("/campgrounds", function(req, res) {
 
 //NEW ROUTE -- SHOW FORM TO CREATE NEW CAMPGROUND
 app.get("/campgrounds/new", function(req, res) {
-  res.render("new.ejs");
+  res.render("campgrounds/new");
 });
 
 //SHOW ROUTE -- SHOW MORE INFO ABOUT ONE CAMPGROUND
 app.get("/campgrounds/:id", function(req, res) {
   //find the campground with provided ID
-  Campground.findById(req.params.id).populate("comments").exec(function(err, foundCampground) {
-    if (err) {
-      console.log(err);
-    } else {
-      //render show template with that campground
-      console.log(foundCampground);
-      res.render("show", { campground: foundCampground });
-    }
-  });
+  Campground.findById(req.params.id)
+    .populate("comments")
+    .exec(function(err, foundCampground) {
+      if (err) {
+        console.log(err);
+      } else {
+        //render show template with that campground
+        console.log(foundCampground);
+        res.render("campgrounds/show", { campground: foundCampground });
+      }
+    });
 });
+
+//=================================
+//  COMMENTS Routes
+// ================================
+
+app.get("/campgrounds/:id/comments/new", function(req,res){
+  res.render("comments/new")
+})
 
 app.listen(8886, () => {
   console.log("The Yelpcamp server has started!");
