@@ -12,6 +12,7 @@ seedDB();
 mongoose.connect("mongodb://localhost/yelp_camp");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
+app.use(express.static(__dirname + "/public"));
 
 //SCHEMA SETUP
 
@@ -68,7 +69,7 @@ app.get("/campgrounds/:id", function(req, res) {
       } else {
         //render show template with that campground
         console.log(foundCampground);
-        
+
         res.render("campgrounds/show", { campground: foundCampground });
       }
     });
