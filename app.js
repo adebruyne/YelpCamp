@@ -165,6 +165,20 @@ app.post(
   function(req, res) {}
 );
 
+//logout route
+app.get("/logout", function(req, res) {
+  req.logout();
+  res.redirect("/campgrounds");
+});
+
+//middleware
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect("/login");
+}
+
 app.listen(8886, () => {
   console.log("The Yelpcamp server has started!");
 });
