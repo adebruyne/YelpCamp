@@ -32,6 +32,11 @@
                         </li>
                         <%  } else { %>
                             <li>
+                                <li>
+                                    <a href="#">Sign in As
+                                        <%= currentUser.username %>
+                                    </a>
+                                </li>
                                 <a href="/logout">Logout</a>
                             </li>
                             <% } %>
