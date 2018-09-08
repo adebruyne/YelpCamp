@@ -150,6 +150,12 @@ app.post("/register", function(req, res) {
   });
 });
 
+//show login form
+app.get("/login", function(req,res){
+  res.render("login");
+})
+
+
 app.listen(8886, () => {
   console.log("The Yelpcamp server has started!");
 });
