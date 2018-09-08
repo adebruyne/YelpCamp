@@ -31,6 +31,17 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+app.use(function(req, res, next){
+  res.locals.currentUser = req.user;
+  next();
+})
+
+
+
+
+
+
 //homepage
 app.get("/", function(req, res) {
   res.render("landing");
@@ -38,12 +49,17 @@ app.get("/", function(req, res) {
 
 //INDEX ROUTE -- SHOW ALL CAMPGROUNDS
 app.get("/campgrounds", function(req, res) {
+  // console.log(req.user);
+
   //Get all campgrounds from DB
   Campground.find({}, function(err, allCampgrounds) {
     if (err) {
       console.log(err);
     } else {
-      res.render("campgrounds/index", { campgrounds: allCampgrounds });
+      res.render("campgrounds/index", {
+        campgrounds: allCampgrounds,
+        currentUser: req.user
+      });
     }
   });
 });
