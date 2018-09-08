@@ -5,13 +5,13 @@ var User = require('../models/user');
 
 
 
-
+// ===========
 //homepage
 router.get("/", function(req, res) {
   res.render("landing");
 });
 
-// =========
+// ================
 //AUTH ROUTES
 
 //show register form

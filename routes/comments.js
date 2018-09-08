@@ -6,6 +6,8 @@ var router = express.Router();
 var Campground = require("../models/campground");
 var Comment = require("../models/comment");
 
+
+//Comments NEW
 router.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res) {
   //find campground by id
   Campground.findById(req.params.id, function(err, campground) {
@@ -17,6 +19,8 @@ router.get("/campgrounds/:id/comments/new", isLoggedIn, function(req, res) {
   });
 });
 
+
+//COMMENTS CREATE
 router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res) {
   //lookup campground using ID
   Campground.findById(req.params.id, function(err, campground) {
