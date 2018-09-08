@@ -10,6 +10,8 @@ var LocalStrategy = require("passport-local");
 var User = require("./models/user");
 
 var commentRoutes = require("./routes/comments");
+var campgroundRoutes = require("./routes/campgrounds");
+var indexRoutes = require("./routes/index");
 
 //seed the database
 seedDB();
@@ -33,14 +35,16 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 //checks if user is there or not
 app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   next();
 });
 
-
+//use the 3 route files
+app.use(indexRoutes);
+app.use(campgroundRoutes);
+app.use(commentRoutes);
 
 app.listen(8886, () => {
   console.log("The Yelpcamp server has started!");
