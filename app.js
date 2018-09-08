@@ -32,15 +32,11 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 
-app.use(function(req, res, next){
+//checks if user is there or not
+app.use(function(req, res, next) {
   res.locals.currentUser = req.user;
   next();
-})
-
-
-
-
-
+});
 
 //homepage
 app.get("/", function(req, res) {
@@ -57,8 +53,7 @@ app.get("/campgrounds", function(req, res) {
       console.log(err);
     } else {
       res.render("campgrounds/index", {
-        campgrounds: allCampgrounds,
-        currentUser: req.user
+        campgrounds: allCampgrounds
       });
     }
   });
