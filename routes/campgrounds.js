@@ -31,7 +31,12 @@ router.post("/campgrounds", isLoggedIn, function(req, res) {
     username: req.user.username
   };
   //create a new object
-  var newCampground = { name: name, image: image, description: desc , author: author };
+  var newCampground = {
+    name: name,
+    image: image,
+    description: desc,
+    author: author
+  };
   //   console.log(req.user);
 
   //Create a new campground and save to DB
@@ -66,6 +71,17 @@ router.get("/campgrounds/:id", function(req, res) {
       }
     });
 });
+
+//DESTROY CAMPGROUND
+// router.delete("/campgrounds/:id", function(req, res) {
+//   Campground.findByIdAndRemove(req.params.id, function(err) {
+//     if (err) {
+//       res.redirect("/campgrounds");
+//     } else {
+//       res.redirect("/campgrounds");
+//     }
+//   });
+// });
 
 //middleware
 function isLoggedIn(req, res, next) {
