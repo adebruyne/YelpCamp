@@ -32,6 +32,8 @@ router.post("/campgrounds/:id/comments", isLoggedIn, function(req, res) {
         if (err) {
           console.log(err);
         } else {
+           // add username and id to comment
+           req.user.username 
           //create new comment
           campground.comments.push(comment);
           //connect new comment to campground
